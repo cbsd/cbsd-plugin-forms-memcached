@@ -1,0 +1,4 @@
+memcached::tcp_port: #tcp_port#
+memcached::udp_port: #udp_port#
+memcached::max_connections: #max_connections#
+memcached::use_sasl: #use_sasl#
