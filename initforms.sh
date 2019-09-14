@@ -3,12 +3,17 @@ MYDIR="$( /usr/bin/dirname $0 )"
 MYPATH="$( /bin/realpath ${MYDIR} )"
 HELPER="memcached"
 
-. /etc/rc.conf
-
-workdir="${cbsd_workdir}"
+: ${distdir="/usr/local/cbsd"}
+# MAIN
+if [ -z "${workdir}" ]; then
+	[ -z "${cbsd_workdir}" ] && . /etc/rc.conf
+	[ -z "${cbsd_workdir}" ] && exit 0
+	workdir="${cbsd_workdir}"
+fi
 
 set -e
-. ${workdir}/cbsd.conf
+. ${distdir}/cbsd.conf
+. ${distdir}/tools.subr
 . ${subr}
 set +e
 
